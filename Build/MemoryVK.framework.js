@@ -3553,8 +3553,7 @@ var Module=typeof Module!=="undefined"?Module:{};
             if (typeof path === "object") {
                 node = path
             } else {
-                p
-                ath = PATH.normalize(path);
+                path = PATH.normalize(path);
                 try {
                     var lookup = FS.lookupPath(path, {
                         follow: !(flags & 131072)
@@ -5193,7 +5192,8 @@ var Module=typeof Module!=="undefined"?Module:{};
     } Module["ccall"] = ccall; Module["cwrap"] = cwrap; Module["stackTrace"] = stackTrace; Module["addRunDependency"] = addRunDependency; Module["removeRunDependency"] = removeRunDependency; Module["FS_createPath"] = FS.createPath; Module["FS_createDataFile"] = FS.createDataFile; Module["stackTrace"] = stackTrace;
     var calledRun;
     function ExitStatus(status) { this.name = "ExitStatus"; this.message = "Program terminated with exit(" + status + ")"; this.status = status } var calledMain = false; dependenciesFulfilled = function runCaller() { if (!calledRun) run(); if (!calledRun) dependenciesFulfilled = runCaller }; function callMain(args) { var entryFunction = Module["_main"]; args = args || []; var argc = args.length + 1; var argv = stackAlloc((argc + 1) * 4); HEAP32[argv >> 2] = allocateUTF8OnStack(thisProgram); for (var i = 1; i < argc; i++){ HEAP32[(argv >> 2) + i] = allocateUTF8OnStack(args[i - 1]) } HEAP32[(argv >> 2) + argc] = 0; try { var ret = entryFunction(argc, argv); exit(ret, true) } catch (e) { if (e instanceof ExitStatus) { return } else if (e == "unwind") { return } else { var toLog = e; if (e && typeof e === "object" && e.stack) { toLog = [e, e.stack] } err("exception thrown: " + toLog); quit_(1, e) } } finally { calledMain = true } } function run(args) {
-        args = args || arguments_; if (runDependencies > 0) { return } preRun(); if (runDependencies > 0) { return } function doRun() { if (calledRun) return; calledRun = true; Module["calledRun"] = true; if (ABORT) return; initRuntime(); preMain(); if (Module["onRuntimeInitialized"]) Module["onRuntimeInitialized"](); if (shouldRunNow) callMain(args); postRun() } if (Module["setStatus"]) {
+        args = args || arguments_; if (runDependencies > 0) { return } preRun(); if (runDependencies > 0) { return } function doRun() { if (calledRun) return; calledRun = true; Module["calledRun"] = true; if (ABORT) return; initRuntime(); preMain(); if (Module["onRuntimeInitialized"]) Module["onRuntimeInitialized"](); if (shouldRunNow) callMain(args); postRun() }
+        if (Module["setStatus"]) {
             Module["setStatus"]("Running..."); setTimeout(function () {
                 setTimeout(function () {
                     Module["setStatus"]("")
