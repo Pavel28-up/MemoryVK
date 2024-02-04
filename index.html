@@ -124,12 +124,14 @@
 
         vkBridge.send('VKWebAppInit');
 
-
-
         function auth() {
             vkBridge.send('VKWebAppGetUserInfo').then(_info => {
+                console.log(user_id);
+                console.log(data.name);
                 console.log(_info);
                 unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
+            }).catch((error) => {
+                console.log(error);
             });
         }
 
