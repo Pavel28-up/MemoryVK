@@ -146,7 +146,9 @@
 
         function setUserData(data){
             console.log(data);
-            vkBridge.send('VKWebAppStorageSet',{"key": "_save" , "value": data}).then(_info =>{
+            vkBridge.send('VKWebAppStorageSet', {
+                key: '_save', value: data
+            }).then(_info => {
                 console.log("Saved!")
             }).catch((error) => {
                 console.log(error);
@@ -154,7 +156,8 @@
         }
 
         function showFullscrenAd() {
-            vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
+            vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" 
+                }).then(data => {
                 console.log(data);
             }).catch((error) => {
                 console.log(error);
