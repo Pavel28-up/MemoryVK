@@ -130,16 +130,17 @@
                     console.log(_info);
                     unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
                 }
-            })
-                .catch((error) => {
+            }).catch((error) => {
                     console.log(error);
-                });
+            });
         }
 
         function getUserData() {
             vkBridge.send("VKWebAppStorageGet", { "keys": ["_save"] }).then(data => {
                 console.log(data);
                 unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
+            }).catch((error) => {
+                console.log(error);
             });
         }
 
@@ -147,12 +148,16 @@
             console.log(data);
             vkBridge.send('VKWebAppStorageSet', { "key": "_save", "value": data }).then(_info => {
                 console.log("Saved!")
+            }).catch((error) => {
+                console.log(error);
             });
         }
 
         function showFullscrenAd() {
             vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
                 console.log(data);
+            }).catch((error) => {
+                console.log(error);
             });
         }
 
@@ -160,6 +165,8 @@
             vkBridge.send('VKWebAppShowNativeAds', { ad_format: "reward" }).then(data => {
                 console.log(data);
                 unityI.SendMessage('VKSDK', 'RewardGetting', JSON.stringify(data.result));
+            }).catch((error) => {
+                console.log(error);
             })
         }
 
