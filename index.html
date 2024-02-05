@@ -136,7 +136,7 @@
         }
 
         function getUserData() {
-            vkBridge.send('VKWebAppStorageGet', { 'keys': ["0"] }).then(data => {
+            vkBridge.send('VKWebAppStorageGet', { 'keys': ["_save"] }).then(data => {
                 console.log(data);
                 unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
             }).catch((error) => {
@@ -147,7 +147,7 @@
         function setUserData(data){
             console.log(data);
             vkBridge.send('VKWebAppStorageSet', {
-                "key": "0",
+                "key": "_save",
                 "value": data
             }).then(_info => {
                 if (_info.result) {
