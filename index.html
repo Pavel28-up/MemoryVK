@@ -126,9 +126,14 @@
 
         function auth() {
             vkBridge.send('VKWebAppGetUserInfo').then(_info => {
-                console.log(_info);
-                unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
-            });
+                if (_info.id) {
+                    console.log(_info);
+                    unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
+                }
+            })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
 
         function getUserData() {
