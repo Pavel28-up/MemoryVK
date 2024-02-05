@@ -145,7 +145,7 @@
         }
 
         function setUserData(data){
-            console.log(data);
+            console.log(UTF8ToString(data));
             vkBridge.send('VKWebAppStorageSet', {
                 "key": "_save",
                 "value": data
