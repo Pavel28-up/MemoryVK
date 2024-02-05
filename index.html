@@ -147,9 +147,14 @@
         function setUserData(data){
             console.log(data);
             vkBridge.send('VKWebAppStorageSet', {
-                key: '_save', value: data
+                "key": "_save",
+                "value": data
             }).then(_info => {
-                console.log("Saved!")
+                if (_info.result) {
+                    console.log("Saved!");
+                } else {
+                    console.log(_info.error);
+                }
             }).catch((error) => {
                 console.log(error);
             });
