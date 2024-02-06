@@ -145,20 +145,18 @@
           }
 
           function getKeyData(){
-              vkBridge.send('VKWebAppStorageGetKeys', {
-                  count: 20,
-                  offset: 0
-              })
-                  .then((data) => {
-                      console.log(data);
-                      if (data.keys) {
-                          // Названия переменных получены
-                          console.log(data.keys);
-                      }
+              vkBridge.send('VKWebAppShowSubscriptionBox',
+                  {
+                      action: 'create',
+                      item: 'subscription_in-app_id',
                   })
-                  .catch((error) => {
-                      // Ошибка
-                      console.log(error);
+                  .then((data) => {
+                      if (data.success) {
+                          // Оплата голосами прошла успешно
+                          // ...
+                      })
+                  .catch((e) => {
+                      console.log(error);   // Ошибка
                   });
           }
 
