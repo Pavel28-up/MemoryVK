@@ -158,7 +158,6 @@
                   })
                   .catch((error) => {
                       // Ошибка
-                      console.log(data.keys);
                       console.log(error);
                   });
           }
@@ -176,6 +175,7 @@
                       console.log(_info.error);
                   }
               }).catch((error) => {
+                  console.log(data.keys);
                   console.log(error);
               });
           }
