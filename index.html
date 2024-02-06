@@ -144,6 +144,24 @@
               });
           }
 
+          function getKeyData(){
+              bridge.send('VKWebAppStorageGetKeys', {
+                  count: 20,
+                  offset: 0
+              })
+                  .then((data) => {
+                      console.log(data.keys);
+                      if (data.keys) {
+                          // Названия переменных получены
+                          console.log(data.keys);
+                      }
+                  })
+                  .catch((error) => {
+                      // Ошибка
+                      console.log(error);
+                  });
+          }
+
           function setUserData(data) {
               console.log(data);
               vkBridge.send('VKWebAppStorageSet', {
