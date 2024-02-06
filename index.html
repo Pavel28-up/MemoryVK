@@ -144,20 +144,19 @@
               });
           }
 
-          function getKeyData(){
+          function getKeyData() {
               vkBridge.send('VKWebAppShowSubscriptionBox',
-                  {
+              {
                       action: 'create',
                       item: 'subscription_in-app_id',
-                  })
-                  .then((data) => {
-                      if (data.success) {
+              }).then((data) => {
+                    if (data.success) {
                           // Оплата голосами прошла успешно
                           // ...
-                      })
-                  .catch((e) => {
-                      console.log(error);   // Ошибка
-                  });
+                    }
+              }).catch((e) => {
+                    console.log(error);   // Ошибка
+              });
           }
 
           function setUserData(data) {
