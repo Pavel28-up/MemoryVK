@@ -93,7 +93,7 @@
           } else {
               // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-              canvas.style.width = "960px";
+              canvas.style.width = "900px";
               canvas.style.height = "600px";
           }
 
@@ -145,13 +145,14 @@
           }
 
           function getKeyData() {
-              vkBridge.send('VKWebAppShowOrderBox', {
-                  type: 'item',
-                  item: 'item_id_123456'
+              vkBridge.send('VKWebAppStorageGetKeys', {
+                  count: 20,
+                  offset: 0
               })
                   .then((data) => {
-                      if (data.success) {
-                          // Оплата голосами прошла успешно
+                      if (data.keys) {
+                          // Названия переменных получены
+                          console.log(data.keys, data.key, data.value);
                       }
                   })
                   .catch((error) => {
