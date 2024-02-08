@@ -161,7 +161,8 @@
                   });
           }
 
-          function setUserData(UTF8ToString(data)) {
+          function setUserData(data) {
+              console.log(typeof data)
               vkBridge.send('VKWebAppStorageSet', {
                   key: '_save',
                   value: data
