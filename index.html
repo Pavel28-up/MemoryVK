@@ -146,7 +146,8 @@
 
           function getKeyData() {
               vkBridge.send('VKWebAppStorageGetKeys', {
-                  "save"
+                  count: 20,
+                  offset: 0
               }).then((data) => {
                   console.log(data.keys, data.key, data.value);
               }).catch((error) => {
