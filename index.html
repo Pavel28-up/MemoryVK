@@ -162,16 +162,16 @@
           }
 
           function setUserData(data) {
-              console.log(typeof data == 'string')
+              console.log(typeof data == 'string');
               vkBridge.send('VKWebAppStorageSet', { key: '_save', value: data }).then((data) => {
                 if (data.result) {
                           // Значение переменной задано
                       }
               }).catch((error) => {
                       // Ошибка
-                    console.log(key);
                       console.log(error);
               });
+              //console.log(typeof key);
           }
 
           function showFullscrenAd() {
