@@ -9,7 +9,7 @@
   </head>
   <body>
       <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width=960 height=600></canvas>
+          <canvas id="unity-canvas" width=900 height=600></canvas>
           <div id="unity-loading-bar">
               <div id="unity-logo"></div>
               <div id="unity-progress-bar-empty">
@@ -100,13 +100,13 @@
           loadingBar.style.display = "block";
 
           var script = document.createElement("script");
-          var unityI = null;
+          var unitI = null;
           script.src = loaderUrl;
           script.onload = () => {
               createUnityInstance(canvas, config, (progress) => {
                   progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
-                  unityI = unityInstance;
+                  unitI = unityInstance;
                   loadingBar.style.display = "none";
                   fullscreenButton.onclick = () => {
                       unityInstance.SetFullscreen(1);
@@ -117,7 +117,6 @@
           };
           document.body.appendChild(script);
       </script>
-
       <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
       <script type="text/javascript">
@@ -162,8 +161,8 @@
                   value: data
               }).then((data) => {
               }).catch((error) => {
-                      // Ошибка
-                      console.log(error);
+                  // Ошибка
+                  console.log(error);
               });
           }
 
@@ -188,6 +187,5 @@
 
 
       </script>
-
   </body>
 </html>
