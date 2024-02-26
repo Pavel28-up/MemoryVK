@@ -157,14 +157,15 @@
           function setUserData(data) {
               console.log(typeof data == 'string');
               vkBridge.send('VKWebAppStorageSet', {
-                  "key": "_save",
-                  "value": data
+                  key: "_save",
+                  value: data
               }).then((data) => {
                   console.log(key);
               }).catch((error) => {
                   // Ошибка
-                  console.log(error._info);
+                  console.log(error);
               });
+              console.log(key);
           }
 
           function showFullscrenAd() {
